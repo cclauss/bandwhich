@@ -118,6 +118,10 @@ jobs:
           git: https://github.com/cross-rs/cross.git
           rev: 085092c
 
+      - name: Install rosetta for MacOS ARM
+        if: matrix.build == 'macos-aarch64'
+        run: softwareupdate --install-rosetta
+
       - name: Build
         id: build
         run: ${{ matrix.cargo }} build --verbose --target ${{ matrix.target }}
